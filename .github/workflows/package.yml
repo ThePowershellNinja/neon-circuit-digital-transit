@@ -13,8 +13,8 @@ jobs:
   package:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: "3.12"
           cache: pip
@@ -29,7 +29,7 @@ jobs:
         run: python tests/test_piece_paths.py
       - name: Build installable release archive
         run: python tools/package.py
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7.0.2
         with:
           name: neon-circuit-digital-transit-package
           path: |
