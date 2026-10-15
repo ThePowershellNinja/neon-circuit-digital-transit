@@ -1,0 +1,18 @@
+{
+    "KPackageStructure": "KWin/Effect",
+    "KPlugin": {
+        "Id": "neon-digital-minimize",
+        "Name": "Neon Circuit Digital Transit",
+        "Description": "Windows peel into irregular digital fragments that follow curved paths to their task icons and retrace them on restore",
+        "Authors": [{"Name": "ThePowershellNinja"}],
+        "Category": "Appearance",
+        "License": "MIT",
+        "Version": "0.1.0",
+        "Website": "https://github.com/ThePowershellNinja/neon-circuit-digital-transit",
+        "EnabledByDefault": false
+    },
+    "X-KDE-Ordering": 60,
+    "X-KWin-Exclusive-Category": "minimize",
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js"
+}

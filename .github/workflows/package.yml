@@ -1,0 +1,38 @@
+name: Validate and package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tests/requirements.txt
+      - name: Install test dependencies
+        run: python -m pip install -r tests/requirements.txt
+      - name: Check metadata and reproducible package
+        run: python -m unittest discover -s tests -p 'test_package.py' -v
+      - name: Check native targets and lifecycle
+        run: python -m unittest discover -s tests -p 'test_targets.py' -v
+      - name: Check fragment geometry and eight-direction culling
+        run: python tests/test_piece_paths.py
+      - name: Build installable release archive
+        run: python tools/package.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: neon-circuit-digital-transit-package
+          path: |
+            dist/*.tar.gz
+            dist/SHA256SUMS
+          if-no-files-found: error
