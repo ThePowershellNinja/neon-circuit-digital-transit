@@ -133,8 +133,12 @@ contents/shaders/digital.frag
 LICENSE
 ```
 
-Version comes from `effect/metadata.json`; the tar/gzip headers are normalized
-so the same inputs produce the same archive bytes. Previews, tests, development
+Version comes from `effect/metadata.json`; the tar/gzip headers are normalized.
+The same inputs and Python/zlib toolchain produce the same archive bytes.
+Different compressors (for example zlib and zlib-ng) can produce different gzip
+bytes for the identical normalized tar payload; verify downloads against the
+published release's `SHA256SUMS`, not a locally recompressed archive.
+Previews, tests, development
 tools, home-directory data, and this README are not installed. The GitHub source
 ZIP is a development checkout, **not** the installable KWin package.
 
